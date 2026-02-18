@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { bettingApi } from "../services/bettingApi";
-import cartReducer from '../features/cart/cartSlice';
+import cartReducer from "../features/cart/cartSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,5 +11,5 @@ export const store = configureStore({
     getDefaultMiddleware().concat(bettingApi.middleware),
 });
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

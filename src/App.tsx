@@ -1,9 +1,14 @@
-import React from 'react'
+import MatchList from "./components/MatchList";
+import BetSlip from "./components/BetSlip";
 
 function App() {
   return (
-    <div>App</div>
-  )
+    <div style={{ display: "flex", gap: 20 }}>
+      <MatchList />
+
+      <BetSlip />
+    </div>
+  );
 }
 
-export default App
+export default App;
