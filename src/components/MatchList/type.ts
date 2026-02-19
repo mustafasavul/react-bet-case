@@ -15,5 +15,6 @@ export interface MatchRowProps {
 export interface OddCellProps {
     market: Market | undefined;
     oddLabel: string;
+    matchId: string;
     onClick: (market: Market, odd: Odd) => void;
 }

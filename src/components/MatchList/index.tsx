@@ -1,7 +1,8 @@
 import { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { Virtuoso } from "react-virtuoso";
-import { addToCart } from "../../features/cart/cartSlice";
+import { addToCart, removeFromCart } from "../../features/cart/cartSlice";
+import { store } from "../../app/store";
 import { useGetMatchesQuery } from "../../services/bettingApi";
 import { Market, Match, Odd } from "../../types/match";
 import s from "./index.module.scss";
@@ -40,18 +41,27 @@ const MatchList = () => {
 
   const handleOddClick = useCallback(
     (match: Match, market: Market, odd: Odd) => {
-      dispatch(
-        addToCart({
-          code: match.code,
-          matchId: match.id,
-          matchName: match.name,
-          marketId: market.id,
-          marketName: market.name,
-          oddId: odd.id,
-          oddLabel: odd.label,
-          oddValue: odd.value,
-        })
+      const cartItems = store.getState().cart.items;
+      const alreadySelected = cartItems.find(
+        (item) => String(item.matchId) === String(match.id) && String(item.oddId) === String(odd.id)
       );
+
+      if (alreadySelected) {
+        dispatch(removeFromCart({ matchId: String(match.id), oddId: String(odd.id) }));
+      } else {
+        dispatch(
+          addToCart({
+            code: match.code,
+            matchId: String(match.id),
+            matchName: match.name,
+            marketId: String(market.id),
+            marketName: market.name,
+            oddId: String(odd.id),
+            oddLabel: odd.label,
+            oddValue: odd.value,
+          })
+        );
+      }
     },
     [dispatch]
   );

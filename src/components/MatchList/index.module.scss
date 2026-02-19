@@ -25,7 +25,7 @@
 .header {
   &Row {
     display: grid;
-    grid-template-columns: 300px 60px 40px repeat(18, 1fr) 40px;
+    grid-template-columns: 300px 60px 40px repeat(15, 1fr) 40px;
     background-color: #333;
     color: #fff;
     font-weight: bold;

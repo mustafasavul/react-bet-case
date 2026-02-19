@@ -38,13 +38,13 @@ const MatchRow: React.FC<MatchRowProps> = React.memo(({ match, onOddClick }) => 
             <div className={s.matchRowCell}>4</div>
 
             {/* Maç Sonucu (1, X, 2) */}
-            <OddCell market={msMarket} oddLabel="1" onClick={handleLocalClick} />
-            <OddCell market={msMarket} oddLabel="X" onClick={handleLocalClick} />
+            <OddCell matchId={match.id} market={msMarket} oddLabel="1" onClick={handleLocalClick} />
+            <OddCell matchId={match.id} market={msMarket} oddLabel="X" onClick={handleLocalClick} />
             <div className={s.matchRowCellOddPlaceholder}>-</div>
 
             {/* Alt/Üst */}
-            <OddCell market={auMarket} oddLabel="Alt" onClick={handleLocalClick} />
-            <OddCell market={auMarket} oddLabel="Üst" onClick={handleLocalClick} />
+            <OddCell matchId={match.id} market={auMarket} oddLabel="Alt" onClick={handleLocalClick} />
+            <OddCell matchId={match.id} market={auMarket} oddLabel="Üst" onClick={handleLocalClick} />
 
             {/* Handikap (H1, 1, X, 2, H2) */}
             <div className={s.matchRowCellOddPlaceholder}></div>
@@ -54,9 +54,9 @@ const MatchRow: React.FC<MatchRowProps> = React.memo(({ match, onOddClick }) => 
             <div className={s.matchRowCellOddPlaceholder}></div>
 
             {/* Çifte Şans */}
-            <OddCell market={csMarket} oddLabel="1-X" onClick={handleLocalClick} />
-            <OddCell market={csMarket} oddLabel="1-2" onClick={handleLocalClick} />
-            <OddCell market={csMarket} oddLabel="X-2" onClick={handleLocalClick} />
+            <OddCell matchId={match.id} market={csMarket} oddLabel="1-X" onClick={handleLocalClick} />
+            <OddCell matchId={match.id} market={csMarket} oddLabel="1-2" onClick={handleLocalClick} />
+            <OddCell matchId={match.id} market={csMarket} oddLabel="X-2" onClick={handleLocalClick} />
 
             {/* Var/Yok */}
             <div className={s.matchRowCellOddPlaceholder}>Var</div>
