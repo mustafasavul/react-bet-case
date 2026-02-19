@@ -17,8 +17,6 @@ const BetSlip = () => {
   const isValid = useSelector(selectIsValid);
   const stake = useSelector(selectStake);
 
-  console.log(items)
-
   return (
     <div className={s.betSlip}>
       <h3 className={s.betSlipHeader}>Kupon</h3>
@@ -71,3 +69,5 @@ const BetSlip = () => {
 };
 
 export default BetSlip;
+
+BetSlip.displayName = "BetSlip";
