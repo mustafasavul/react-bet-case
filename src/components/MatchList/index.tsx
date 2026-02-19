@@ -69,7 +69,29 @@ const MatchList = () => {
   const itemContent = useCallback(
     (_index: number, item: ListItem) => {
       if (item.type === "header") {
-        return <div className={s.groupHeader}>{item.value}</div>;
+        return (
+          <div className={s.groupHeader}>
+            <div className={s.headerCell}>{item.value}</div>
+            <div className={s.headerCell}>Yorumlar</div>
+            <div className={s.headerCell}></div>
+            <div className={s.headerCell}>1</div>
+            <div className={s.headerCell}>x</div>
+            <div className={s.headerCell}>2</div>
+            <div className={s.headerCell}>Alt</div>
+            <div className={s.headerCell}>Üst</div>
+            <div className={s.headerCell}>H1</div>
+            <div className={s.headerCell}>1</div>
+            <div className={s.headerCell}>x</div>
+            <div className={s.headerCell}>2</div>
+            <div className={s.headerCell}>H2</div>
+            <div className={s.headerCell}>1-X</div>
+            <div className={s.headerCell}>1-2</div>
+            <div className={s.headerCell}>X-2</div>
+            <div className={s.headerCell}>Var</div>
+            <div className={s.headerCell}>Yok</div>
+            <div className={s.headerCell}>+99</div>
+          </div>
+        );
       }
       return <MatchRow match={item.value} onOddClick={handleOddClick} />;
     },

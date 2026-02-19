@@ -59,8 +59,8 @@ const MatchRow: React.FC<MatchRowProps> = React.memo(({ match, onOddClick }) => 
             <OddCell matchId={match.id} market={csMarket} oddLabel="X-2" onClick={handleLocalClick} />
 
             {/* Var/Yok */}
-            <div className={s.matchRowCellOddPlaceholder}>Var</div>
-            <div className={s.matchRowCellOddPlaceholder}>Yok</div>
+            <div className={s.matchRowCellOddPlaceholder}></div>
+            <div className={s.matchRowCellOddPlaceholder}></div>
 
             {/* +99 */}
             <div className={s.matchRowCell}>+99</div>

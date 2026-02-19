@@ -8,6 +8,7 @@ import {
 } from "../../features/cart/cartSelector";
 import { removeFromCart, setStake } from "../../features/cart/cartSlice";
 import s from './index.module.scss';
+import { formatCurrency } from "../../utils/formatter";
 
 const BetSlip = () => {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ const BetSlip = () => {
         </div>
 
         <div className={s.betSlipFooterValue}>Toplam Oran: {totalOdd.toFixed(2)}</div>
-        <div className={s.betSlipFooterValue}>Olası Kazanç: {potentialWin.toFixed(2)} TL</div>
+        <div className={s.betSlipFooterValue}>Olası Kazanç: {formatCurrency(potentialWin)}</div>
 
         <button disabled={!isValid} className={s.betSlipFooterButton}>Kuponu Oyna</button>
       </div>
