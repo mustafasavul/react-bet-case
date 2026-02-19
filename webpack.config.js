@@ -17,7 +17,38 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                auto: true,
+                localIdentName: "[name]__[local]--[hash:base64:5]",
+                namedExport: false,
+                exportLocalsConvention: "as-is",
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                auto: true,
+                localIdentName: "[name]__[local]--[hash:base64:5]",
+                namedExport: false,
+                exportLocalsConvention: "as-is",
+              },
+            },
+          },
+          "sass-loader",
+        ],
       }
     ]
   },

@@ -1,0 +1,152 @@
+.match {
+  &ListContainer {
+    width: 100%;
+    overflow-x: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+  }
+
+  &Table {
+    min-width: 1200px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &Row {
+    display: grid;
+    grid-template-columns: 300px 60px 40px repeat(18, 1fr) 40px;
+    border-bottom: 1px solid #eee;
+    align-items: stretch;
+    background-color: #fff;
+  }
+
+  &Row:hover {
+    background-color: #f9f9f9;
+  }
+
+  &Date {
+    font-weight: 600;
+    font-size: 12px;
+    color: #222;
+  }
+}
+
+.header {
+  &Row {
+    display: grid;
+    grid-template-columns: 300px 60px 40px repeat(18, 1fr) 40px;
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+    align-items: center;
+    text-align: center;
+    padding: 8px 0;
+    border-bottom: 2px solid #ddd;
+  }
+
+  &Cell {
+    padding: 4px;
+  }
+
+  &Cell:first-child {
+    text-align: left;
+    padding-left: 10px;
+  }
+}
+
+.groupHeader {
+  background-color: #f0f0f0;
+  padding: 8px 10px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* cells */
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  font-size: 12px;
+  border-right: 1px solid #f0f0f0;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &OddPlaceholder {
+    color: #000;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &InfoColumn {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px 10px;
+    gap: 4px;
+  }
+
+  &InfoHeader {
+    font-weight: bold;
+    font-size: 12px;
+    color: #222;
+  }
+
+  &Name {
+    font-weight: 600;
+    font-size: 12px;
+    color: #222;
+  }
+}
+
+/* Odds Button */
+.odd {
+  &Button {
+    background: none;
+    border: none;
+    padding: 4px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    transition: background-color 0.2s;
+    border-radius: 4px;
+  }
+
+  &Button:hover {
+    background-color: #ffeb3b;
+  }
+
+  &Button.selected {
+    background-color: #ffeb3b;
+  }
+
+  &Placeholder {
+    color: #ccc;
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .matchListContainer {
+    border-radius: 0;
+  }
+}

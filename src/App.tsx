@@ -1,9 +1,8 @@
-import MatchList from "./components/MatchList";
-import BetSlip from "./components/BetSlip";
+import { MatchList, BetSlip } from "./components";
 
 function App() {
   return (
-    <div style={{ display: "flex", gap: 20 }}>
+    <div>
       <MatchList />
 
       <BetSlip />

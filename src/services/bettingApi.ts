@@ -17,6 +17,7 @@ export const bettingApi = createApi({
             code: node.C,
             name: node.N,
             date: node.D,
+            day: node.DAY,
             time: node.T,
             league: node.LN,
             markets: Object.values(node.OCG).map((market: any) => ({

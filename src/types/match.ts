@@ -15,6 +15,7 @@ export interface Match {
   code: string;
   name: string;
   date: string;
+  day: string;
   time: string;
   league: string;
   markets: Market[];
