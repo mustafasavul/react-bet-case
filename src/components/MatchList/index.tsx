@@ -1,13 +1,13 @@
-import React, { useMemo, useCallback } from "react";
-import { useGetMatchesQuery } from "../../services/bettingApi";
+import { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../features/cart/cartSlice";
-import s from "./index.module.scss";
 import { Virtuoso } from "react-virtuoso";
-import MatchRow from "./MatchRow";
-import { Market, Odd, Match } from "../../types/match";
-
-type ListItem = { type: "header"; value: string } | { type: "match"; value: Match };
+import { addToCart } from "../../features/cart/cartSlice";
+import { useGetMatchesQuery } from "../../services/bettingApi";
+import { Market, Match, Odd } from "../../types/match";
+import s from "./index.module.scss";
+import MatchRow from "./components/MatchRow/MatchRow";
+import { ListItem } from "./type";
+import BettingLoader from "../Loader";
 
 const MatchList = () => {
   const { data, isLoading } = useGetMatchesQuery();
@@ -57,7 +57,7 @@ const MatchList = () => {
   );
 
   const itemContent = useCallback(
-    (index: number, item: ListItem) => {
+    (_index: number, item: ListItem) => {
       if (item.type === "header") {
         return <div className={s.groupHeader}>{item.value}</div>;
       }
@@ -69,7 +69,7 @@ const MatchList = () => {
   if (isLoading) {
     return (
       <div className={s.matchListContainer}>
-        <div style={{ padding: "20px", textAlign: "center" }}>Yükleniyor...</div>
+        <BettingLoader />
       </div>
     );
   }
@@ -103,7 +103,7 @@ const MatchList = () => {
           useWindowScroll
           data={items}
           itemContent={itemContent}
-          computeItemKey={(index, item) =>
+          computeItemKey={(_index, item) =>
             item.type === "header" ? `header-${item.value}` : `match-${item.value.id}`
           }
         />

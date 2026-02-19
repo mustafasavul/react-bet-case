@@ -8,7 +8,7 @@ interface CartState {
 
 const initialState: CartState = {
   items: [],
-  stake: 1,
+  stake: 50,
 };
 
 const cartSlice = createSlice({

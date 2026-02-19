@@ -1,13 +1,9 @@
-import React, { useMemo, useCallback } from "react";
-import s from "./index.module.scss";
-import { Match, Market, Odd } from "../../types/match";
-import OddCell from "./OddCell";
-import { MARKET_MS, MARKET_CS, MARKET_AU } from "../../constants/markets";
-
-interface MatchRowProps {
-    match: Match;
-    onOddClick: (match: Match, market: Market, odd: Odd) => void;
-}
+import React, { useCallback, useMemo } from "react";
+import { MARKET_AU, MARKET_CS, MARKET_MS } from "../../../../constants/markets";
+import { Market, Odd } from "../../../../types/match";
+import s from "./MatchRow.module.scss";
+import OddCell from "../OddCell/OddCell";
+import { MatchRowProps } from "../../type";
 
 const MatchRow: React.FC<MatchRowProps> = React.memo(({ match, onOddClick }) => {
     const { msMarket, csMarket, auMarket } = useMemo(() => {
@@ -28,34 +24,34 @@ const MatchRow: React.FC<MatchRowProps> = React.memo(({ match, onOddClick }) => 
     return (
         <div className={s.matchRow}>
             {/* Info Column */}
-            <div className={s.cellInfoColumn}>
-                <div className={s.cellInfoHeader}>
+            <div className={s.matchRowCellInfoColumn}>
+                <div className={s.matchRowCellInfoHeader}>
                     {match.code} {match.time}
                 </div>
-                <div className={s.cellName}>{match.name}</div>
+                <div className={s.matchRowCellName}>{match.name}</div>
             </div>
 
             {/* Comments */}
-            <div className={s.cell}>Yorumlar</div>
+            <div className={s.matchRowCell}>Yorumlar</div>
 
             {/* Static Placeholder */}
-            <div className={s.cell}>4</div>
+            <div className={s.matchRowCell}>4</div>
 
             {/* Maç Sonucu (1, X, 2) */}
             <OddCell market={msMarket} oddLabel="1" onClick={handleLocalClick} />
             <OddCell market={msMarket} oddLabel="X" onClick={handleLocalClick} />
-            <div className={s.cellOddPlaceholder}>-</div>
+            <div className={s.matchRowCellOddPlaceholder}>-</div>
 
             {/* Alt/Üst */}
             <OddCell market={auMarket} oddLabel="Alt" onClick={handleLocalClick} />
             <OddCell market={auMarket} oddLabel="Üst" onClick={handleLocalClick} />
 
             {/* Handikap (H1, 1, X, 2, H2) */}
-            <div className={s.cellOddPlaceholder}></div>
-            <div className={s.cellOddPlaceholder}></div>
-            <div className={s.cellOddPlaceholder}></div>
-            <div className={s.cellOddPlaceholder}></div>
-            <div className={s.cellOddPlaceholder}></div>
+            <div className={s.matchRowCellOddPlaceholder}></div>
+            <div className={s.matchRowCellOddPlaceholder}></div>
+            <div className={s.matchRowCellOddPlaceholder}></div>
+            <div className={s.matchRowCellOddPlaceholder}></div>
+            <div className={s.matchRowCellOddPlaceholder}></div>
 
             {/* Çifte Şans */}
             <OddCell market={csMarket} oddLabel="1-X" onClick={handleLocalClick} />
@@ -63,11 +59,11 @@ const MatchRow: React.FC<MatchRowProps> = React.memo(({ match, onOddClick }) => 
             <OddCell market={csMarket} oddLabel="X-2" onClick={handleLocalClick} />
 
             {/* Var/Yok */}
-            <div className={s.cellOddPlaceholder}>Var</div>
-            <div className={s.cellOddPlaceholder}>Yok</div>
+            <div className={s.matchRowCellOddPlaceholder}>Var</div>
+            <div className={s.matchRowCellOddPlaceholder}>Yok</div>
 
             {/* +99 */}
-            <div className={s.cell}>+99</div>
+            <div className={s.matchRowCell}>+99</div>
         </div>
     );
 });

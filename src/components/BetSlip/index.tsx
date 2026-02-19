@@ -1,13 +1,13 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectCartItems,
-  selectPotentialWin,
-  selectTotalOdd,
   selectIsValid,
+  selectPotentialWin,
   selectStake,
+  selectTotalOdd,
 } from "../../features/cart/cartSelector";
 import { removeFromCart, setStake } from "../../features/cart/cartSlice";
-import s from './index.module.scss'
+import s from './index.module.scss';
 
 const BetSlip = () => {
   const dispatch = useDispatch();
@@ -43,7 +43,6 @@ const BetSlip = () => {
           )
         }
       </div>
-
 
       <div className={s.betSlipFooter}>
         <div className={s.betSlipFooterStake}>

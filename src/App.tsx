@@ -1,8 +1,9 @@
 import { MatchList, BetSlip } from "./components";
+import "./styles/global.scss";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <MatchList />
 
       <BetSlip />
