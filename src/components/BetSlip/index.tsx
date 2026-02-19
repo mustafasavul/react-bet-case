@@ -29,13 +29,13 @@ const BetSlip = () => {
             <div className={s.betSlipEmpty}>Kuponunuzda bahis bulunamadı!</div>
           ) : (
             items.map((item) => (
-              <div key={item.oddId} className={s.betSlipItem}>
+              <div key={`${item.matchId}-${item.oddId}`} className={s.betSlipItem}>
                 <div>
                   Kod: {item.code} Maç: {item.matchName} - {item.marketName} {item.oddLabel} (Oran: {item.oddValue})
                 </div>
 
 
-                <button onClick={() => dispatch(removeFromCart(item.oddId))} className={s.betSlipItemRemove}>
+                <button onClick={() => dispatch(removeFromCart({ matchId: item.matchId, oddId: item.oddId }))} className={s.betSlipItemRemove}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M18 6L6 18M6 6L18 18" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>

@@ -26,9 +26,9 @@ const cartSlice = createSlice({
         state.items.push(action.payload);
       }
     },
-    removeFromCart: (state, action: PayloadAction<string>) => {
+    removeFromCart: (state, action: PayloadAction<{ matchId: string; oddId: string }>) => {
       state.items = state.items.filter(
-        (i) => i.oddId !== action.payload
+        (i) => !(i.matchId === action.payload.matchId && i.oddId === action.payload.oddId)
       );
     },
     setStake: (state, action: PayloadAction<number>) => {
