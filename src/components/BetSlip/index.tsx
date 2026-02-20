@@ -13,6 +13,7 @@ import { formatCurrency } from '../../utils/formatter';
 import CloseIcon from '../icons/CloseIcon';
 import RemoveIcon from '../icons/Remove';
 import s from './index.module.scss';
+import { useGetMatchesQuery } from '../../services/bettingApi';
 
 const BetSlip = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const BetSlip = () => {
   const isValid = useSelector(selectIsValid);
   const stake = useSelector(selectStake);
   const requiredMin = useSelector(selectRequiredMinBetCount);
-
+  const { isLoading } = useGetMatchesQuery();
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
@@ -42,6 +43,10 @@ const BetSlip = () => {
   const handleClearCart = () => {
     dispatch(clearCart());
   };
+
+  if (isLoading) {
+    return <></>;
+  }
 
   return (
     <div className={`${s.betSlip} ${isAnimating ? s.animate : ''}`}>
