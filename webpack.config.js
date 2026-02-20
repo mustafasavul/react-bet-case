@@ -11,7 +11,7 @@ module.exports = (env, argv) => {
   return {
     entry: './src/index.tsx',
     mode: argv.mode || "development",
-    devtool: isProd ? false : "source-map",
+    devtool: isProd ? false : "eval-source-map",
     resolve: {
       extensions: [".ts", ".tsx", ".js", ".jsx"]
     },
