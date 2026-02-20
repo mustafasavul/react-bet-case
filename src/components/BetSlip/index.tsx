@@ -4,13 +4,15 @@ import {
   selectCartItems,
   selectIsValid,
   selectPotentialWin,
+  selectRequiredMinBetCount,
   selectStake,
   selectTotalOdd,
-  selectRequiredMinBetCount,
 } from "../../features/cart/cartSelector";
-import { removeFromCart, setStake } from "../../features/cart/cartSlice";
-import s from './index.module.scss';
+import { clearCart, removeFromCart, setStake } from "../../features/cart/cartSlice";
 import { formatCurrency } from "../../utils/formatter";
+import CloseIcon from "../icons/CloseIcon";
+import RemoveIcon from "../icons/Remove";
+import s from './index.module.scss';
 
 const BetSlip = () => {
   const dispatch = useDispatch();
@@ -33,15 +35,32 @@ const BetSlip = () => {
 
   const mbsMissing = requiredMin > items.length ? requiredMin - items.length : 0;
 
+  const handleRemoveItem = (matchId: string, oddId: string) => {
+    dispatch(removeFromCart({ matchId, oddId }));
+  };
+
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
+
   return (
     <div className={`${s.betSlip} ${isAnimating ? s.animate : ""}`}>
       <div className={s.betSlipHeaderContainer}>
         <h3 className={s.betSlipHeader}>Kupon</h3>
 
-        <div className={s.betSlipCount}>
-          <span className={s.betSlipCountLabel}>Toplam Bahis:</span>
-          <span className={s.betSlipCountValue}>{items.length} / 20</span>
+        <div className={s.betSlipHeaderActions}>
+          <div className={s.betSlipCount}>
+            <span className={s.betSlipCountLabel}>Toplam Bahis:</span>
+            <span className={s.betSlipCountValue}>{items.length} / 20</span>
+          </div>
+
+          {items.length > 0 && (
+            <button className={s.betSlipClearButton} onClick={handleClearCart} title="Kuponu Temizle">
+              <RemoveIcon />
+            </button>
+          )}
         </div>
+
       </div>
 
       <hr />
@@ -59,11 +78,8 @@ const BetSlip = () => {
                   <strong>Kod:</strong> {item.code} Maç: {item.matchName} - {item.marketName} {item.oddLabel} <strong>(Oran: {item.oddValue})</strong>
                 </div>
 
-
-                <button onClick={() => dispatch(removeFromCart({ matchId: item.matchId, oddId: item.oddId }))} className={s.betSlipItemRemove}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 6L6 18M6 6L18 18" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                <button onClick={() => handleRemoveItem(item.matchId, item.oddId)} className={s.betSlipItemRemove}>
+                  <CloseIcon />
                 </button>
               </div>
             ))
