@@ -7,6 +7,7 @@ export interface Odd {
 export interface Market {
   id: string;
   name: string;
+  mbs?: number;
   odds: Odd[];
 }
 

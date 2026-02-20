@@ -1,22 +1,43 @@
+@keyframes borderGlow {
+    0% {
+        border-color: #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    50% {
+        border-color: #ffeb3b;
+        box-shadow: 0 0 20px rgba(255, 235, 59, 1);
+    }
+
+    100% {
+        border-color: #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
 .betSlip {
-    width: 150px;
-    height: 15px;
     position: fixed;
     right: 0;
     bottom: 0;
     z-index: 1000;
+    max-width: 450px;
+    width: 100%;
+    height: 11px;
+    max-height: 500px;
+    padding: 20px;
     background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: all 0.3s ease;
+    opacity: 0.9;
+    transition: all 0.3s ease-in-out;
 
-    &:focus,
     &:hover {
-        width: 450px;
         height: auto;
-        transform: translateX(0);
+        opacity: 1;
+    }
+
+    &.animate {
+        animation: borderGlow 0.6s ease-out;
     }
 
     &Header {
@@ -25,7 +46,30 @@
         margin: 0;
         text-decoration: underline;
         text-underline-offset: 2px;
-        margin-bottom: 20px;
+    }
+
+    &HeaderContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &Count {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    &CountLabel {
+        font-size: 16px;
+        font-weight: 500;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+
+    &CountValue {
+        font-size: 16px;
+        font-weight: 300;
     }
 
     &Items {
@@ -50,7 +94,30 @@
         color: #000;
         font-size: 16px;
         font-weight: 500;
+    }
+
+    &EmptyTitle {
         text-decoration: underline;
+    }
+
+    &WarningText {
+        font-size: 14px;
+        color: #d32f2f;
+        margin-top: 8px;
+        font-weight: normal;
+    }
+
+    &AlertMbs {
+        color: #d32f2f;
+        background-color: #ffebee;
+        border: 1px solid #ef9a9a;
+        padding: 8px;
+        border-radius: 4px;
+        font-size: 13px;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 8px;
+        box-sizing: border-box;
     }
 
     &ItemRemove {

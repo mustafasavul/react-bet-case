@@ -6,7 +6,7 @@ export const selectStake = (state: RootState) => state.cart.stake;
 
 export const selectTotalOdd = createSelector(
   selectCartItems,
-  (items) => items.reduce((acc, item) => acc * item.oddValue, 1)
+  (items) => items.length === 0 ? 0 : items.reduce((acc, item) => acc * item.oddValue, 1)
 );
 
 export const selectPotentialWin = createSelector(
@@ -18,8 +18,16 @@ export const selectPotentialWin = createSelector(
 export const selectRequiredMinBetCount = createSelector(
   selectCartItems,
   (items) => {
-    if (items.length === 0) return 0;
-    return Math.max(...items.map(i => i.mbs).filter((mbs): mbs is number => mbs !== undefined));
+    const defaultMbs = 3;
+    if (items.length === 0) return defaultMbs;
+
+    const validMbsValues = items
+      .map((i) => i.mbs)
+      .filter((mbs): mbs is number => mbs !== undefined && !isNaN(mbs));
+
+    if (validMbsValues.length === 0) return defaultMbs;
+
+    return Math.max(...validMbsValues);
   }
 );
 

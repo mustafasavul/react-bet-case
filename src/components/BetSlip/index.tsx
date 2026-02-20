@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCartItems,
@@ -5,6 +6,7 @@ import {
   selectPotentialWin,
   selectStake,
   selectTotalOdd,
+  selectRequiredMinBetCount,
 } from "../../features/cart/cartSelector";
 import { removeFromCart, setStake } from "../../features/cart/cartSlice";
 import s from './index.module.scss';
@@ -17,20 +19,44 @@ const BetSlip = () => {
   const potentialWin = useSelector(selectPotentialWin);
   const isValid = useSelector(selectIsValid);
   const stake = useSelector(selectStake);
+  const requiredMin = useSelector(selectRequiredMinBetCount);
+
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    if (items.length > 0) {
+      setIsAnimating(true);
+      const timer = setTimeout(() => setIsAnimating(false), 600);
+      return () => clearTimeout(timer);
+    }
+  }, [items]);
+
+  const mbsMissing = requiredMin > items.length ? requiredMin - items.length : 0;
 
   return (
-    <div className={s.betSlip}>
-      <h3 className={s.betSlipHeader}>Kupon</h3>
+    <div className={`${s.betSlip} ${isAnimating ? s.animate : ""}`}>
+      <div className={s.betSlipHeaderContainer}>
+        <h3 className={s.betSlipHeader}>Kupon</h3>
+
+        <div className={s.betSlipCount}>
+          <span className={s.betSlipCountLabel}>Toplam Bahis:</span>
+          <span className={s.betSlipCountValue}>{items.length} / 20</span>
+        </div>
+      </div>
+
+      <hr />
 
       <div className={s.betSlipItems}>
         {
           items.length === 0 ? (
-            <div className={s.betSlipEmpty}>Kuponunuzda bahis bulunamadı!</div>
+            <div className={s.betSlipEmpty}>
+              <div className={s.betSlipEmptyTitle}>Kuponunuzda bahis bulunamadı!</div>
+            </div>
           ) : (
             items.map((item) => (
               <div key={`${item.matchId}-${item.oddId}`} className={s.betSlipItem}>
                 <div>
-                  Kod: {item.code} Maç: {item.matchName} - {item.marketName} {item.oddLabel} (Oran: {item.oddValue})
+                  <strong>Kod:</strong> {item.code} Maç: {item.matchName} - {item.marketName} {item.oddLabel} <strong>(Oran: {item.oddValue})</strong>
                 </div>
 
 
@@ -46,6 +72,12 @@ const BetSlip = () => {
       </div>
 
       <div className={s.betSlipFooter}>
+        {mbsMissing > 0 && (
+          <div className={s.betSlipAlertMbs}>
+            MBS kuralı nedeniyle en az {mbsMissing} bahis daha eklemelisiniz.
+          </div>
+        )}
+
         <div className={s.betSlipFooterStake}>
           <span className={s.betSlipFooterStakeLabel}>Kupon Tutarı:</span>
           <input

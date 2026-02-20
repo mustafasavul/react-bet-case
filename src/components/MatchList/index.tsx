@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { Virtuoso } from "react-virtuoso";
+import { toast } from "react-toastify";
 import { addToCart, removeFromCart } from "../../features/cart/cartSlice";
 import { store } from "../../app/store";
 import { useGetMatchesQuery } from "../../services/bettingApi";
@@ -49,6 +50,11 @@ const MatchList = () => {
       if (alreadySelected) {
         dispatch(removeFromCart({ matchId: String(match.id), oddId: String(odd.id) }));
       } else {
+        if (cartItems.length >= 20) {
+          toast.warn("Kuponda en fazla 20 bahis bulunabilir.");
+          return;
+        }
+
         dispatch(
           addToCart({
             code: match.code,
@@ -56,6 +62,7 @@ const MatchList = () => {
             matchName: match.name,
             marketId: String(market.id),
             marketName: market.name,
+            mbs: market.mbs,
             oddId: String(odd.id),
             oddLabel: odd.label,
             oddValue: odd.value,
