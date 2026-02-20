@@ -4,10 +4,10 @@
  * maximumFractionDigits: 2 -> Limit to a maximum of 2 decimal places for kuruş
  */
 const currencyFormatter = new Intl.NumberFormat('tr-TR', {
-    style: 'currency',
-    currency: 'TRY',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 2,
+  style: 'currency',
+  currency: 'TRY',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 2,
 });
 
 /**
@@ -23,11 +23,11 @@ const currencyFormatter = new Intl.NumberFormat('tr-TR', {
  * ```
  */
 export const formatCurrency = (value: number | string): string => {
-    const numericValue = typeof value === 'number' ? value : parseFloat(value);
+  const numericValue = typeof value === 'number' ? value : parseFloat(value);
 
-    if (isNaN(numericValue)) {
-        return '₺0';
-    }
+  if (isNaN(numericValue)) {
+    return '₺0';
+  }
 
-    return currencyFormatter.format(numericValue);
+  return currencyFormatter.format(numericValue);
 };

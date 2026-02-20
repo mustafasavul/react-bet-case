@@ -1,17 +1,17 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Match } from "../types/match";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Match } from '../types/match';
 
 export const bettingApi = createApi({
-  reducerPath: "bettingApi",
+  reducerPath: 'bettingApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://nesine-case-study.onrender.com",
+    baseUrl: 'https://nesine-case-study.onrender.com',
   }),
   endpoints: (builder) => ({
     getMatches: builder.query<Match[], void>({
-      query: () => "/bets",
+      query: () => '/bets',
       transformResponse: (response: any[]): Match[] => {
         return response
-          .filter(node => node.S === "Open") // IMF suspended control "S"
+          .filter((node) => node.S === 'Open') // IMF suspended control "S"
           .map((node) => ({
             id: node.NID,
             code: node.C,

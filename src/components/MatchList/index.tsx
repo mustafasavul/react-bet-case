@@ -1,15 +1,15 @@
-import { useCallback, useMemo } from "react";
-import { useDispatch } from "react-redux";
-import { Virtuoso } from "react-virtuoso";
-import { toast } from "react-toastify";
-import { addToCart, removeFromCart } from "../../features/cart/cartSlice";
-import { store } from "../../app/store";
-import { useGetMatchesQuery } from "../../services/bettingApi";
-import { Market, Match, Odd } from "../../types/match";
-import s from "./index.module.scss";
-import MatchRow from "./components/MatchRow/MatchRow";
-import { ListItem } from "./type";
-import BettingLoader from "../Loader";
+import { useCallback, useMemo } from 'react';
+import { useDispatch } from 'react-redux';
+import { Virtuoso } from 'react-virtuoso';
+import { toast } from 'react-toastify';
+import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
+import { store } from '../../app/store';
+import { useGetMatchesQuery } from '../../services/bettingApi';
+import { Market, Match, Odd } from '../../types/match';
+import s from './index.module.scss';
+import MatchRow from './components/MatchRow/MatchRow';
+import { ListItem } from './type';
+import BettingLoader from '../Loader';
 
 const MatchList = () => {
   const { data, isLoading } = useGetMatchesQuery();
@@ -31,10 +31,8 @@ const MatchList = () => {
     // Flatten to list for Virtuoso
     const flattenedItems: ListItem[] = [];
     Object.entries(groupedMatches).forEach(([key, matches]) => {
-      flattenedItems.push({ type: "header", value: key });
-      matches.forEach((match) =>
-        flattenedItems.push({ type: "match", value: match })
-      );
+      flattenedItems.push({ type: 'header', value: key });
+      matches.forEach((match) => flattenedItems.push({ type: 'match', value: match }));
     });
 
     return flattenedItems;
@@ -51,7 +49,7 @@ const MatchList = () => {
         dispatch(removeFromCart({ matchId: String(match.id), oddId: String(odd.id) }));
       } else {
         if (cartItems.length >= 20) {
-          toast.warn("Kuponda en fazla 20 bahis bulunabilir.");
+          toast.warn('Kuponda en fazla 20 bahis bulunabilir.');
           return;
         }
 
@@ -75,7 +73,7 @@ const MatchList = () => {
 
   const itemContent = useCallback(
     (_index: number, item: ListItem) => {
-      if (item.type === "header") {
+      if (item.type === 'header') {
         return (
           <div className={s.groupHeader}>
             <div className={s.headerCell}>{item.value}</div>
@@ -143,7 +141,7 @@ const MatchList = () => {
           data={items}
           itemContent={itemContent}
           computeItemKey={(_index, item) =>
-            item.type === "header" ? `header-${item.value}` : `match-${item.value.id}`
+            item.type === 'header' ? `header-${item.value}` : `match-${item.value.id}`
           }
         />
       </div>
@@ -153,4 +151,4 @@ const MatchList = () => {
 
 export default MatchList;
 
-MatchList.displayName = "MatchList";
+MatchList.displayName = 'MatchList';

@@ -65,9 +65,14 @@ const BettingLoader = () => {
       <div style={styles.textContainer}>
         <svg
           className="svg-ball"
-          width="20" height="20" viewBox="0 0 24 24"
-          fill="none" stroke="#eab308" strokeWidth="2"
-          strokeLinecap="round" strokeLinejoin="round"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#eab308"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
           <circle cx="12" cy="12" r="10"></circle>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
@@ -104,10 +109,9 @@ const styles = {
     fontWeight: '600',
     letterSpacing: '0.5px',
     animation: 'pulseText 1.5s infinite ease-in-out',
-  }
+  },
 };
 
 export default BettingLoader;
 
-BettingLoader.displayName = "BettingLoader";
-
+BettingLoader.displayName = 'BettingLoader';

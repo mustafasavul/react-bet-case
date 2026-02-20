@@ -1,13 +1,22 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { bettingApi } from "../services/bettingApi";
-import cartReducer from "../features/cart/cartSlice";
+import { bettingApi } from '../services/bettingApi';
+import cartReducer from '../features/cart/cartSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['cart'] // only persist cart state
+  whitelist: ['cart'], // only persist cart state
 };
 
 const rootReducer = combineReducers({

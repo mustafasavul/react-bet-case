@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   selectCartItems,
   selectIsValid,
@@ -7,11 +7,11 @@ import {
   selectRequiredMinBetCount,
   selectStake,
   selectTotalOdd,
-} from "../../features/cart/cartSelector";
-import { clearCart, removeFromCart, setStake } from "../../features/cart/cartSlice";
-import { formatCurrency } from "../../utils/formatter";
-import CloseIcon from "../icons/CloseIcon";
-import RemoveIcon from "../icons/Remove";
+} from '../../features/cart/cartSelector';
+import { clearCart, removeFromCart, setStake } from '../../features/cart/cartSlice';
+import { formatCurrency } from '../../utils/formatter';
+import CloseIcon from '../icons/CloseIcon';
+import RemoveIcon from '../icons/Remove';
 import s from './index.module.scss';
 
 const BetSlip = () => {
@@ -44,7 +44,7 @@ const BetSlip = () => {
   };
 
   return (
-    <div className={`${s.betSlip} ${isAnimating ? s.animate : ""}`}>
+    <div className={`${s.betSlip} ${isAnimating ? s.animate : ''}`}>
       <div className={s.betSlipHeaderContainer}>
         <h3 className={s.betSlipHeader}>Kupon</h3>
 
@@ -55,36 +55,41 @@ const BetSlip = () => {
           </div>
 
           {items.length > 0 && (
-            <button className={s.betSlipClearButton} onClick={handleClearCart} title="Kuponu Temizle">
+            <button
+              className={s.betSlipClearButton}
+              onClick={handleClearCart}
+              title="Kuponu Temizle"
+            >
               <RemoveIcon />
             </button>
           )}
         </div>
-
       </div>
 
       <hr />
 
       <div className={s.betSlipItems}>
-        {
-          items.length === 0 ? (
-            <div className={s.betSlipEmpty}>
-              <div className={s.betSlipEmptyTitle}>Kuponunuzda bahis bulunamadı!</div>
-            </div>
-          ) : (
-            items.map((item) => (
-              <div key={`${item.matchId}-${item.oddId}`} className={s.betSlipItem}>
-                <div>
-                  <strong>Kod:</strong> {item.code} Maç: {item.matchName} - {item.marketName} {item.oddLabel} <strong>(Oran: {item.oddValue})</strong>
-                </div>
-
-                <button onClick={() => handleRemoveItem(item.matchId, item.oddId)} className={s.betSlipItemRemove}>
-                  <CloseIcon />
-                </button>
+        {items.length === 0 ? (
+          <div className={s.betSlipEmpty}>
+            <div className={s.betSlipEmptyTitle}>Kuponunuzda bahis bulunamadı!</div>
+          </div>
+        ) : (
+          items.map((item) => (
+            <div key={`${item.matchId}-${item.oddId}`} className={s.betSlipItem}>
+              <div>
+                <strong>Kod:</strong> {item.code} Maç: {item.matchName} - {item.marketName}{' '}
+                {item.oddLabel} <strong>(Oran: {item.oddValue})</strong>
               </div>
-            ))
-          )
-        }
+
+              <button
+                onClick={() => handleRemoveItem(item.matchId, item.oddId)}
+                className={s.betSlipItemRemove}
+              >
+                <CloseIcon />
+              </button>
+            </div>
+          ))
+        )}
       </div>
 
       <div className={s.betSlipFooter}>
@@ -110,7 +115,9 @@ const BetSlip = () => {
         <div className={s.betSlipFooterValue}>Toplam Oran: {totalOdd.toFixed(2)}</div>
         <div className={s.betSlipFooterValue}>Olası Kazanç: {formatCurrency(potentialWin)}</div>
 
-        <button disabled={!isValid} className={s.betSlipFooterButton}>Kuponu Oyna</button>
+        <button disabled={!isValid} className={s.betSlipFooterButton}>
+          Kuponu Oyna
+        </button>
       </div>
     </div>
   );
@@ -118,4 +125,4 @@ const BetSlip = () => {
 
 export default BetSlip;
 
-BetSlip.displayName = "BetSlip";
+BetSlip.displayName = 'BetSlip';
