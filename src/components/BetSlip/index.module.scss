@@ -22,18 +22,35 @@
     z-index: 1000;
     max-width: 450px;
     width: 100%;
-    height: 11px;
+    height: 60px;
     max-height: 550px;
     padding: 20px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
     background-color: #fff;
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     opacity: 0.9;
     transition: all 0.3s ease-in-out;
+    overflow: hidden;
 
-    &:hover {
+    &:hover,
+    &:focus-within,
+    &:active {
         height: auto;
         opacity: 1;
+        max-height: calc(85vh - env(safe-area-inset-top));
+    }
+
+    @media screen and (max-width: 768px) {
+        max-width: 100%;
+        height: 40px;
+        left: 0;
+        bottom: 0;
+        border-radius: 0;
+        padding: 10px;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
     }
 
     &.animate {
@@ -46,6 +63,10 @@
         margin: 0;
         text-decoration: underline;
         text-underline-offset: 2px;
+
+        @media screen and (max-width: 768px) {
+            font-size: 12px;
+        }
     }
 
     &HeaderContainer {
@@ -94,11 +115,19 @@
         font-weight: 500;
         text-decoration: underline;
         text-underline-offset: 2px;
+
+        @media screen and (max-width: 768px) {
+            font-size: 12px;
+        }
     }
 
     &CountValue {
         font-size: 16px;
         font-weight: 300;
+
+        @media screen and (max-width: 768px) {
+            font-size: 12px;
+        }
     }
 
     &Items {
@@ -106,6 +135,12 @@
         overflow-y: auto;
         margin-bottom: 20px;
         padding-right: 15px;
+
+        @media screen and (max-width: 768px) {
+            max-height: 200px;
+            margin-bottom: 10px;
+            padding-right: 10px;
+        }
     }
 
     &Item {
@@ -115,6 +150,10 @@
         margin-bottom: 10px;
         padding-bottom: 10px;
         border-bottom: 1px solid #ccc;
+
+        @media screen and (max-width: 768px) {
+            font-size: 14px;
+        }
     }
 
     &Empty {
@@ -123,6 +162,10 @@
         color: #000;
         font-size: 16px;
         font-weight: 500;
+
+        @media screen and (max-width: 768px) {
+            font-size: 12px;
+        }
     }
 
     &EmptyTitle {
@@ -194,6 +237,10 @@
     &FooterValue {
         font-size: 16px;
         font-weight: 500;
+
+        @media screen and (max-width: 768px) {
+            font-size: 12px;
+        }
     }
 
     &FooterStake {
@@ -208,10 +255,27 @@
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
+
+        @media screen and (max-width: 768px) {
+            font-size: 12px;
+        }
+    }
+
+    &FooterStakeLabel {
+        font-size: 16px;
+        font-weight: 500;
+
+        @media screen and (max-width: 768px) {
+            font-size: 12px;
+        }
     }
 
     &FooterStakeCurrency {
         font-size: 16px;
         font-weight: 500;
+
+        @media screen and (max-width: 768px) {
+            font-size: 12px;
+        }
     }
 }
