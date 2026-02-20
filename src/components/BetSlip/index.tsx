@@ -13,7 +13,7 @@ import { formatCurrency } from '../../utils/formatter';
 import CloseIcon from '../icons/CloseIcon';
 import RemoveIcon from '../icons/Remove';
 import s from './index.module.scss';
-import { useGetMatchesQuery } from '../../services/bettingApi';
+import { useGetMatchesQuery } from '../../services/matchApi';
 
 const BetSlip = () => {
   const dispatch = useDispatch();

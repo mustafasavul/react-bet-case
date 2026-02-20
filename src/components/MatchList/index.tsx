@@ -4,7 +4,7 @@ import { Virtuoso } from 'react-virtuoso';
 import { toast } from 'react-toastify';
 import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
 import { store } from '../../app/store';
-import { useGetMatchesQuery } from '../../services/bettingApi';
+import { useGetMatchesQuery } from '../../services/matchApi';
 import { Market, Match, Odd } from '../../types/match';
 import s from './index.module.scss';
 import MatchRow from './components/MatchRow/MatchRow';
