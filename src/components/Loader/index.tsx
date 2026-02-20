@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Component görsellik için AI ile yaratılmıştır.
-const BettingLoader = () => {
+const Loader = () => {
   return (
     <div style={styles.wrapper as React.CSSProperties}>
       <style>
@@ -112,6 +112,6 @@ const styles = {
   },
 };
 
-export default BettingLoader;
+export default Loader;
 
-BettingLoader.displayName = 'BettingLoader';
+Loader.displayName = 'Loader';

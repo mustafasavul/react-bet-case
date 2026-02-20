@@ -1,15 +1,15 @@
 import { useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { Virtuoso } from 'react-virtuoso';
 import { toast } from 'react-toastify';
-import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
+import { Virtuoso } from 'react-virtuoso';
 import { store } from '../../app/store';
+import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
 import { useGetMatchesQuery } from '../../services/matchApi';
 import { Market, Match, Odd } from '../../types/match';
-import s from './index.module.scss';
+import Loader from '../Loader';
 import MatchRow from './components/MatchRow/MatchRow';
+import s from './index.module.scss';
 import { ListItem } from './type';
-import BettingLoader from '../Loader';
 
 const MatchList = () => {
   const { data, isLoading } = useGetMatchesQuery();
@@ -106,7 +106,7 @@ const MatchList = () => {
   if (isLoading) {
     return (
       <div className={s.matchListContainer}>
-        <BettingLoader />
+        <Loader />
       </div>
     );
   }
