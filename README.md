@@ -43,6 +43,11 @@ Make sure you have Node.js and `npm` installed on your machine.
    ```bash
    npm run start
    ```
+
+5. Preview the production build:
+   ```bash
+   npm run preview
+   ```
    The application will run on `http://localhost:8080` (or another available port).
 
 ### Building for Production
